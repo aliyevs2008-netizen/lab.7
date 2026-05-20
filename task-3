@@ -1,0 +1,48 @@
+html 
+
+
+<!-- HTML Hissəsi -->
+<div class="counter-container">
+    <!-- Sayğacın cari dəyərini göstərən sahə -->
+    <h1 id="saygac-ekrani">0</h1>
+    
+    <!-- İdarəetmə düymələri -->
+    <button onclick="azalt()">Azalt</button>
+    <button onclick="artir()">Artir</button>
+</div>
+
+<script>
+// JavaScript Hissəsi
+
+// Cari sayı yadda saxlayan dəyişən (0-dan başlayır)
+let say = 0;
+
+// Ekrandakı HTML elementini seçirik
+const ekran = document.getElementById('saygac-ekrani');
+
+// Sayı 1 vahid artıran funksiya
+function artir() {
+    say = say + 1; // və ya qısaca say++
+    ekran.innerText = say; // Yeni dəyəri ekrana yazdırırıq
+}
+
+// Sayı 1 vahid azaldan funksiya
+function azalt() {
+    say = say - 1; // və ya qısaca say--
+
+
+  
+  js
+
+
+  function azalt() {
+    if (say > 0) {
+        say--;
+        ekran.innerText = say;
+    }
+}
+
+  
+    ekran.innerText = say; // Yeni dəyəri ekrana yazdırırıq
+}
+</script>
