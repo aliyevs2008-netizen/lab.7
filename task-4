@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faktorial Kalkulyatoru</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .input-group { margin-bottom: 15px; }
+        button { padding: 8px 15px; cursor: pointer; }
+        #netice { font-weight: bold; color: green; margin-top: 15px; }
+        #xeta { font-weight: bold; color: red; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+    <h2>Faktorial Hesablayıcı proqram</h2>
+    
+    <div class="input-group">
+        <label for="ededInput">Ədəd daxil edin:</label>
+        <input type="number" id="ededInput" value="8" min="0" step="1">
+        <button onclick="proqramiBaslat()">Hesabla</button>
+    </div>
+
+    <!-- Nəticələrin çıxacağı sahələr -->
+    <div id="netice"></div>
+    <div id="xeta"></div>
+
+    <script>
+    // Faktorialı hesablayan əsas funksiya (Məntiq hissəsi)
+    function faktorialHesabla(n) {
+        if (n === 0 || n === 1) {
+            return 1;
+        }
+        let hasil = 1;
+        for (let i = 1; i <= n; i++) {
+            hasil *= i;
+        }
+        return hasil;
+    }
+
+    // İstifadəçi düyməyə kliklədikdə işə düşən idarəedici funksiya
+    function proqramiBaslat() {
+        // Ekrandakı elementləri və daxil edilən dəyəri alırıq
+        const inputElement = document.getElementById('ededInput');
+        const neticeEkrani = document.getElementById('netice');
+        const xetaEkrani = document.getElementById('xeta');
+        
+        const eded = Number(inputElement.value);
+
+        // Hər hesablama öncəsi ekranları təmizləyirik
+        neticeEkrani.innerText = "";
+        xetaEkrani.innerText = "";
+
+        // VALIDASİYA (Yoxlama): Kənar halların qarşısını alırıq
+        if (inputElement.value === "") {
+            xetaEkrani.innerText = "Xəta: Zəhmət olmasa bir ədəd daxil edin!";
+            return;
+        }
+        if (eded < 0) {
+            xetaEkrani.innerText = "Xəta: Mənfi ədədlərin faktorialı olmur!";
+            return;
+        }
+        if (!Number.isInteger(eded)) {
+            xetaEkrani.innerText = "Xəta: Zəhmət olmasa tam ədəd daxil edin!";
+            return;
+        }
+
+        // Əgər hər şey qaydasındadırsa hesablamanı aparırıq
+        const hesablanmisCavab = faktorialHesabla(eded);
+
+        // Nəticəni həm konsola yazdırırıq, həm də ekranda göstəririk
+        console.log(`Hesablandı: ${eded}! = ${hesablanmisCavab}`);
+        neticeEkrani.innerText = `Uğurlu nəticə: ${eded}! = ${hesablanmisCavab.toLocaleString()}`;
+    }
+
+    // Səhifə ilk dəfə açılanda avtomatik olaraq ilkin dəyəri (8) hesablasın
+    window.onload = function() {
+        proqramiBaslat();
+    };
+    </script>
+
+</body>
+</html>
